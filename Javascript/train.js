@@ -73,7 +73,7 @@
  
  
   
-    var newMinutesAway = $("<div>").addClass("col-md-2").text(firstTrainTime + frequency);
+    var newMinutesAway = $("<div>").addClass("col-md-2").text(tMinutesTillTrain);
     var pageBreak = $("<hr>").addClass("my-2");
  
     newRow.append(newName).append(newRole).append(newStartDate).append(newFrequency).append(newMinutesAway);
@@ -90,7 +90,7 @@
     // };
  
  
-    database.ref().push(newTrain);
+    // database.ref().push(newTrain);
  
     trainName = $("#trainName").val("");
     destination = $("#destination").val("");
@@ -99,3 +99,33 @@
  
     $("#trainName").focus();
  });
+
+ // Assumptions
+ var tFrequency = frequency;
+
+ // Time is 3:30 AM
+ var firstTime = firstTrainTime;
+
+ // First Time (pushed back 1 year to make sure it comes before current time)
+ var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+ console.log(firstTimeConverted);
+
+ // Current Time
+ var currentTime = moment();
+ console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+ // Difference between the times
+ var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+ console.log("DIFFERENCE IN TIME: " + diffTime);
+
+ // Time apart (remainder)
+ var tRemainder = diffTime % tFrequency;
+ console.log(tRemainder);
+
+ // Minute Until Train
+ var tMinutesTillTrain = tFrequency - tRemainder;
+ console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+ // Next Train
+ var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+ console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
