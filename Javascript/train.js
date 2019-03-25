@@ -18,10 +18,10 @@
  
     event.preventDefault();
  
-    var trainName = $("#trainName").val().trim();
-    var destination = $("#destination").val().trim();
-    var firstTrainTime = $("#firstTrainTime").val().trim();
-    var frequency = $("#frequency").val().trim();
+    var trainName = $("#trainName").val();
+    var destination = $("#destination").val();
+    var firstTrainTime = $("#firstTrainTime").val();
+    var frequency = $("#frequency").val();
  
     console.log(trainName);
     console.log(destination);
@@ -56,28 +56,28 @@
  
  // * Add input to table
  $("#trainName").focus();
- $(document).on("click", "#submit", function (event) {
+ $("body").on("click", "#submit", function (event) {
  
     event.preventDefault();
  
-    var trainName = $("#trainName").val().trim();
-    var destination = $("#destination").val().trim();
-    var firstTrainTime = $("#firstTrainTime").val().trim();
-    var frequency = $("#frequency").val().trim();
+    var trainName = $("#trainName").val();
+    var destination = $("#destination").val();
+    var firstTrainTime = $("#firstTrainTime").val();
+    var frequency = $("#frequency").val();
  
     var newRow = $("<div>").addClass("row");
     var newName = $("<div>").addClass("col-md-2").text(trainName);
     var newRole = $("<div>").addClass("col-md-2").text(destination);
     var newStartDate = $("<div>").addClass("col-md-2").text(firstTrainTime);
-    var newMonthsworked = $("<div>").addClass("col-md-2").text(frequency);
+    var newFrequency = $("<div>").addClass("col-md-2").text(frequency);
  
  
-    var newMonthlyRate = $("<div>").addClass("col-md-2").text(monthlyRate);
-    var newTotalBilled = $("<div>").addClass("col-md-2").text(newMonthsworked * newMonthlyRate);
+  
+    var newMinutesAway = $("<div>").addClass("col-md-2").text(firstTrainTime + frequency);
     var pageBreak = $("<hr>").addClass("my-2");
  
-    newRow.append(newName).append(newRole).append(newStartDate).append(newMonthsworked).append(newMonthlyRate).append(newTotalBilled);
-    $("#new-user").append(newRow).append(pageBreak);
+    newRow.append(newName).append(newRole).append(newStartDate).append(newFrequency).append(newMinutesAway);
+    $("#new-train").append(newRow).append(pageBreak);
  
  
  
